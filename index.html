@@ -766,7 +766,7 @@ function render(C){
  $('qrTitle').textContent=C.qrTitle; $('qrDescription').textContent=C.qrDescription; $('afterPaymentTitle').textContent=C.afterPaymentTitle; $('afterPaymentText').textContent=C.afterPaymentText; $('footerText').textContent=C.footer;
  $('topSupport').href=C.telegram; $('topSupport').textContent=C.topSupportButton; $('heroSupport').href=C.telegram; $('heroSupport').textContent=C.sendReceiptButton; $('afterPaymentButton').href=C.telegram; $('afterPaymentButton').textContent=C.supportButton;
  $('amountValue').textContent=`${C.amount} ${C.currency}`;
- const rows=[['Banco',C.bank],['Titular',C.accountHolder],['Número de cuenta',C.accountNumber],['IBAN',C.iban],['SWIFT / BIC',C.swift],['Referencia',C.reference]];
+ const rows=[['Banco',C.bank],['Titular',C.accountHolder],['Número de cuenta',C.accountNumber],['Cédula',C.swift],['Referencia',C.reference]];
  $('details').innerHTML=rows.map(([label,value])=>`<div class="detail"><span class="detail-label">${esc(label)}</span><strong class="detail-value">${esc(value||'—')} ${value?`<button class="copy-btn" type="button" onclick='copyText(${JSON.stringify(String(value))})'>Copiar</button>`:''}</strong></div>`).join('');
  const img=$('qrImage'), ph=$('qrPlaceholder');
  if(C.qrImage){img.src=C.qrImage;img.style.display='block';ph.style.display='none';img.onerror=()=>{img.style.display='none';ph.style.display='block'}}else{img.style.display='none';ph.style.display='block'}
