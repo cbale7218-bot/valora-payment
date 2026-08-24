@@ -27,7 +27,7 @@ const CONFIG = {
 
     accountNumber: "0000000000",
 
-    iban: "ES00 0000 0000 0000 0000 0000",
+
 
     swift: "XXXXXX",
 
