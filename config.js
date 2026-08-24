@@ -8,7 +8,7 @@ const CONFIG_FALLBACK = {
   bank: "Название банка",
   accountHolder: "Nombre del titular",
   accountNumber: "0000000000",
-  iban: "ES00 0000 0000 0000 0000 0000",
+  cedula: "ES00 0000 0000 0000 0000 0000",
   swift: "XXXXXX",
   reference: "Referencia del pago",
   amount: "0.00",
