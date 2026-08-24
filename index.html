@@ -756,7 +756,7 @@ footer{
 <script>
 function $(id){return document.getElementById(id)}
 function esc(v){return String(v??'').replaceAll('&','&amp;').replaceAll('<','&lt;').replaceAll('>','&gt;').replaceAll('"','&quot;').replaceAll("'",'&#039;')}
-async function copyText(value){try{await navigator.clipboard.writeText(value);showToast('Скопировано')}catch(e){const t=document.createElement('textarea');t.value=value;document.body.appendChild(t);t.select();document.execCommand('copy');t.remove();showToast('Скопировано')}}
+async function copyText(value){try{await navigator.clipboard.writeText(value);showToast('Copiado')}catch(e){const t=document.createElement('textarea');t.value=value;document.body.appendChild(t);t.select();document.execCommand('copy');t.remove();showToast('Copiado')}}
 function showToast(text){const t=$('toast');t.textContent=text;t.classList.add('show');clearTimeout(window._toast);window._toast=setTimeout(()=>t.classList.remove('show'),1800)}
 function render(C){
  document.title=`VALORA — ${C.paymentTitle}`;
