@@ -2,7 +2,7 @@
 
 // Вставь сюда URL публичного JSON-файла с актуальными данными.
 // Например: https://example.com/valora.json
-const DATA_URL = "https://gist.githubusercontent.com/cbale7218-bot/a0e46013da7d0a7a372712ed999519b2/raw/3a17145139c3325559a5c7f227fa48cabd9ec0fa/gistfile1.txt";
+const DATA_URL = "https://gist.githubusercontent.com/cbale7218-bot/a0e46013da7d0a7a372712ed999519b2/raw/gistfile1.txt";
 
 const CONFIG_FALLBACK = {
   bank: "Название банка",
