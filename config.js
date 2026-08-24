@@ -13,7 +13,7 @@ const CONFIG_FALLBACK = {
   amount: "0.00",
   currency: "EUR",
   telegram: "https://t.me/VALORA_support",
-  qrImage: "assets/qr.png",
+  qrImage: "/assets/qr.png",
   eyebrow: "Información de pago",
   pageTitle: "Realiza tu pago de forma sencilla.",
   pageDescription: "Consulta los datos de pago y utiliza el código QR si tu banco permite escanearlo. Después de completar la operación, envía el comprobante al chat de soporte.",
