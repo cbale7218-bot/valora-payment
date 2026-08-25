@@ -6,6 +6,10 @@
 
 <title>VALORA — Información de pago</title>
 
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
 <style>
 *{
     margin:0;
@@ -14,41 +18,78 @@
 }
 
 :root{
-    --navy:#0b2d5b;
-    --navy-dark:#071d3d;
-    --blue:#1e6bff;
+    --navy:#071d3d;
+    --navy-2:#0b2d5b;
+    --blue:#176bff;
+    --blue-light:#4d8cff;
     --green:#00c896;
-    --soft:#eef5ff;
-    --text:#12345b;
-    --muted:#7185a0;
-    --border:#dbe7f3;
-    --white:#ffffff;
+
+    --bg:#f5f8fc;
+    --card:#ffffff;
+    --soft:#f1f6fc;
+
+    --text:#0a2545;
+    --muted:#70839c;
+    --border:#e1e9f2;
+
+    --shadow:0 20px 60px rgba(7,29,61,.07);
+}
+
+html{
+    scroll-behavior:smooth;
 }
 
 body{
-    font-family:Arial,Helvetica,sans-serif;
+    font-family:"Manrope",Arial,sans-serif;
     background:
-        radial-gradient(circle at 90% 5%,rgba(30,107,255,.12),transparent 30%),
-        radial-gradient(circle at 10% 65%,rgba(0,200,150,.08),transparent 25%),
-        #f5f9fd;
+        radial-gradient(
+            circle at 88% 3%,
+            rgba(23,107,255,.13),
+            transparent 27%
+        ),
+        radial-gradient(
+            circle at 4% 55%,
+            rgba(0,200,150,.08),
+            transparent 23%
+        ),
+        var(--bg);
     color:var(--text);
     min-height:100vh;
+    overflow-x:hidden;
 }
 
-button,a{
+body::before{
+    content:"";
+    position:fixed;
+    width:520px;
+    height:520px;
+    border-radius:50%;
+    background:rgba(23,107,255,.035);
+    filter:blur(80px);
+    top:30%;
+    right:-260px;
+    pointer-events:none;
+}
+
+button,
+a{
     font-family:inherit;
 }
 
 header{
     width:100%;
-    background:#fff;
-    border-bottom:1px solid var(--border);
+    background:rgba(255,255,255,.82);
+    backdrop-filter:blur(18px);
+    -webkit-backdrop-filter:blur(18px);
+    border-bottom:1px solid rgba(225,233,242,.8);
+    position:relative;
+    z-index:10;
 }
 
 .header-inner{
     max-width:1220px;
     margin:auto;
-    padding:20px 30px;
+    padding:18px 30px;
     display:flex;
     align-items:center;
     justify-content:space-between;
@@ -57,18 +98,19 @@ header{
 .logo{
     display:flex;
     align-items:center;
-    gap:10px;
+    gap:11px;
 }
 
 .logo-symbol{
-    width:42px;
-    height:42px;
-    border-radius:12px;
+    width:43px;
+    height:43px;
+    border-radius:13px;
     overflow:hidden;
     display:flex;
     align-items:center;
     justify-content:center;
     background:#fff;
+    box-shadow:0 7px 20px rgba(23,107,255,.12);
 }
 
 .logo-symbol img{
@@ -78,10 +120,11 @@ header{
 }
 
 .logo-text{
-    font-size:29px;
-    font-weight:900;
-    letter-spacing:.5px;
+    font-size:27px;
+    font-weight:800;
+    letter-spacing:-.7px;
     color:var(--navy);
+    line-height:1;
 }
 
 .logo-text span{
@@ -89,26 +132,35 @@ header{
 }
 
 .logo-subtitle{
-    font-size:9px;
+    font-size:8px;
     color:var(--muted);
-    margin-top:-3px;
-    letter-spacing:.7px;
+    margin-top:5px;
+    letter-spacing:.9px;
+    font-weight:700;
 }
 
 .header-button{
     text-decoration:none;
     background:var(--navy);
     color:#fff;
-    padding:12px 20px;
+    padding:12px 19px;
     border-radius:12px;
-    font-size:14px;
-    font-weight:700;
+    font-size:13px;
+    font-weight:800;
+    box-shadow:0 8px 22px rgba(7,29,61,.13);
+    transition:.25s ease;
+}
+
+.header-button:hover{
+    transform:translateY(-2px);
+    background:var(--blue);
+    box-shadow:0 10px 25px rgba(23,107,255,.2);
 }
 
 main{
     max-width:1220px;
     margin:auto;
-    padding:80px 30px 100px;
+    padding:82px 30px 95px;
 }
 
 .hero{
@@ -116,53 +168,58 @@ main{
     grid-template-columns:1.05fr .95fr;
     gap:70px;
     align-items:center;
-    margin-bottom:80px;
+    margin-bottom:86px;
 }
 
 .hero-label{
     display:inline-flex;
     align-items:center;
-    gap:8px;
-    background:#eaf4ff;
-    color:var(--navy);
-    border-radius:30px;
-    padding:8px 14px;
-    font-size:13px;
+    gap:9px;
+    background:rgba(23,107,255,.07);
+    color:var(--blue);
+    border:1px solid rgba(23,107,255,.1);
+    border-radius:100px;
+    padding:9px 15px;
+    font-size:11px;
     font-weight:800;
     text-transform:uppercase;
-    letter-spacing:.4px;
-    margin-bottom:28px;
+    letter-spacing:.7px;
+    margin-bottom:25px;
 }
 
 .hero-label::before{
     content:"";
-    width:9px;
-    height:9px;
+    width:8px;
+    height:8px;
     border-radius:50%;
     background:var(--green);
-    box-shadow:0 0 0 5px rgba(0,200,150,.12);
+    box-shadow:
+        0 0 0 5px rgba(0,200,150,.10),
+        0 0 16px rgba(0,200,150,.3);
 }
 
 .hero h1{
-    font-size:68px;
-    line-height:.98;
-    letter-spacing:-3px;
+    font-size:66px;
+    line-height:1.02;
+    letter-spacing:-3.5px;
     color:var(--navy);
     margin-bottom:25px;
     max-width:680px;
+    font-weight:800;
 }
 
 .hero-description{
-    font-size:18px;
-    line-height:1.6;
-    color:#64809f;
+    font-size:17px;
+    line-height:1.7;
+    color:#667d98;
     max-width:620px;
-    margin-bottom:30px;
+    margin-bottom:31px;
+    font-weight:500;
 }
 
 .hero-actions{
     display:flex;
-    gap:14px;
+    gap:12px;
     flex-wrap:wrap;
 }
 
@@ -172,64 +229,97 @@ main{
     align-items:center;
     justify-content:center;
     text-decoration:none;
-    padding:16px 24px;
-    border-radius:15px;
+    padding:15px 22px;
+    border-radius:13px;
     font-weight:800;
-    font-size:15px;
-    transition:.2s;
+    font-size:13px;
+    transition:.25s ease;
 }
 
 .primary-button{
-    background:var(--blue);
+    background:linear-gradient(135deg,#176bff,#3d83ff);
     color:#fff;
-    box-shadow:0 12px 28px rgba(30,107,255,.2);
+    box-shadow:
+        0 12px 30px rgba(23,107,255,.22),
+        inset 0 1px 0 rgba(255,255,255,.2);
+}
+
+.primary-button:hover{
+    transform:translateY(-3px);
+    box-shadow:0 17px 35px rgba(23,107,255,.28);
 }
 
 .secondary-button{
-    background:#fff;
+    background:rgba(255,255,255,.8);
     color:var(--navy);
     border:1px solid var(--border);
 }
 
-.primary-button:hover,
 .secondary-button:hover{
-    transform:translateY(-2px);
+    transform:translateY(-3px);
+    border-color:#cbd9e8;
+    box-shadow:0 10px 25px rgba(7,29,61,.06);
 }
 
 .hero-card{
-    min-height:340px;
+    min-height:365px;
     border-radius:34px;
-    padding:32px;
+    padding:34px;
     background:
-        radial-gradient(circle at 90% 0%,rgba(255,255,255,.08),transparent 30%),
-        var(--navy-dark);
+        radial-gradient(
+            circle at 80% 15%,
+            rgba(23,107,255,.25),
+            transparent 32%
+        ),
+        radial-gradient(
+            circle at 10% 90%,
+            rgba(0,200,150,.12),
+            transparent 30%
+        ),
+        linear-gradient(145deg,#0a2c59,#061a35);
     color:#fff;
     position:relative;
     overflow:hidden;
     display:flex;
     flex-direction:column;
     justify-content:flex-end;
+    box-shadow:
+        0 30px 70px rgba(7,29,61,.18),
+        inset 0 1px 0 rgba(255,255,255,.08);
+}
+
+.hero-card::before{
+    content:"";
+    position:absolute;
+    width:410px;
+    height:410px;
+    border:1px solid rgba(255,255,255,.07);
+    border-radius:50%;
+    right:-180px;
+    top:-170px;
 }
 
 .hero-card::after{
     content:"";
     position:absolute;
-    width:330px;
-    height:330px;
-    border:1px solid rgba(255,255,255,.09);
+    width:250px;
+    height:250px;
+    border:1px solid rgba(255,255,255,.045);
     border-radius:50%;
-    right:-120px;
-    top:-120px;
+    right:-95px;
+    top:-90px;
 }
 
 .hero-card-logo{
     position:absolute;
-    top:32px;
-    left:32px;
-    width:80px;
-    height:80px;
-    border-radius:22px;
-    background:rgba(255,255,255,.09);
+    top:31px;
+    left:31px;
+    width:82px;
+    height:82px;
+    border-radius:23px;
+    background:rgba(255,255,255,.08);
+    border:1px solid rgba(255,255,255,.09);
+    backdrop-filter:blur(10px);
     display:flex;
     align-items:center;
     justify-content:center;
@@ -246,72 +336,94 @@ main{
     position:relative;
     z-index:2;
     font-size:29px;
+    line-height:1.15;
+    letter-spacing:-1px;
     margin-bottom:12px;
+    font-weight:800;
 }
 
 .hero-card p{
     position:relative;
     z-index:2;
-    color:#d5e2f2;
-    line-height:1.5;
+    color:#c7d7e9;
+    line-height:1.65;
+    max-width:430px;
+    font-size:14px;
 }
 
 .payment-heading{
-    margin-bottom:25px;
+    margin-bottom:24px;
 }
 
 .payment-heading h2{
-    font-size:36px;
+    font-size:35px;
+    letter-spacing:-1.5px;
     color:var(--navy);
     margin-bottom:8px;
+    font-weight:800;
 }
 
 .payment-heading p{
     color:var(--muted);
-    font-size:16px;
+    font-size:14px;
+    font-weight:500;
 }
 
 .payment-layout{
     display:grid;
     grid-template-columns:1.4fr .8fr;
-    gap:24px;
+    gap:22px;
 }
 
 .card{
-    background:#fff;
-    border:1px solid var(--border);
+    background:rgba(255,255,255,.92);
+    border:1px solid rgba(225,233,242,.95);
     border-radius:25px;
     padding:30px;
-    box-shadow:0 12px 35px rgba(11,45,91,.05);
+    box-shadow:var(--shadow);
+    transition:.3s ease;
+}
+
+.card:hover{
+    transform:translateY(-3px);
+    box-shadow:0 25px 65px rgba(7,29,61,.09);
 }
 
 .card-title{
-    font-size:23px;
+    font-size:21px;
+    letter-spacing:-.5px;
     color:var(--navy);
-    margin-bottom:25px;
+    margin-bottom:23px;
+    font-weight:800;
 }
 
 .details{
     display:grid;
     grid-template-columns:1fr 1fr;
-    gap:14px;
+    gap:12px;
 }
 
 .detail{
-    padding:18px;
-    background:#f7faff;
+    padding:17px;
+    background:linear-gradient(145deg,#f8fbff,#f4f8fc);
     border:1px solid var(--border);
     border-radius:15px;
+    transition:.25s ease;
+}
+
+.detail:hover{
+    border-color:#cbdced;
+    transform:translateY(-2px);
 }
 
 .detail-label{
     display:block;
-    color:#7890aa;
-    font-size:11px;
+    color:#8093a9;
+    font-size:10px;
     font-weight:800;
     text-transform:uppercase;
-    letter-spacing:.7px;
-    margin-bottom:9px;
+    letter-spacing:.8px;
+    margin-bottom:8px;
 }
 
 .detail-value{
@@ -320,7 +432,7 @@ main{
     justify-content:space-between;
     gap:10px;
     color:var(--navy);
-    font-size:15px;
+    font-size:14px;
     font-weight:800;
     word-break:break-word;
 }
@@ -330,24 +442,32 @@ main{
     border:0;
     background:#eaf2ff;
     color:var(--blue);
-    padding:8px 11px;
+    padding:7px 10px;
     border-radius:8px;
     cursor:pointer;
-    font-size:11px;
+    font-size:10px;
     font-weight:800;
+    transition:.2s ease;
 }
 
 .copy-btn:hover{
     background:var(--blue);
     color:#fff;
+    transform:scale(1.03);
 }
 
 .amount-box{
-    margin-top:20px;
-    padding:24px;
+    margin-top:18px;
+    padding:22px;
     border-radius:18px;
-    background:linear-gradient(135deg,#eef9f7,#f1f7ff);
-    border:1px solid #d6ebe7;
+    background:
+        radial-gradient(
+            circle at 90% 20%,
+            rgba(0,200,150,.09),
+            transparent 30%
+        ),
+        linear-gradient(135deg,#effaf7,#f1f6ff);
+    border:1px solid #d7e9e5;
     display:flex;
     align-items:center;
     justify-content:space-between;
@@ -355,94 +475,124 @@ main{
 }
 
 .amount-label{
-    color:#7187a0;
-    font-size:11px;
+    color:#7890a7;
+    font-size:10px;
     font-weight:800;
     text-transform:uppercase;
     letter-spacing:.8px;
-    margin-bottom:7px;
+    margin-bottom:6px;
 }
 
 .amount-value{
-    font-size:30px;
-    font-weight:900;
+    font-size:29px;
+    letter-spacing:-1px;
+    font-weight:800;
     color:var(--navy);
 }
 
 .info-card{
-    background:linear-gradient(145deg,#edf9f7,#eef5ff);
-    border:1px solid #d6e9e7;
+    background:
+        radial-gradient(
+            circle at 100% 0%,
+            rgba(0,200,150,.09),
+            transparent 35%
+        ),
+        linear-gradient(145deg,#f1faf8,#f0f6ff);
+    border:1px solid #dbeae8;
 }
 
 .info-icon{
-    width:52px;
-    height:52px;
+    width:51px;
+    height:51px;
     border-radius:15px;
     background:#fff;
     display:flex;
     align-items:center;
     justify-content:center;
     color:var(--green);
-    font-size:25px;
+    font-size:22px;
     font-weight:900;
-    margin-bottom:25px;
+    margin-bottom:23px;
+    box-shadow:0 8px 25px rgba(0,200,150,.08);
 }
 
 .info-card h3{
-    font-size:22px;
+    font-size:21px;
+    letter-spacing:-.5px;
     color:var(--navy);
-    margin-bottom:12px;
+    margin-bottom:11px;
+    font-weight:800;
 }
 
 .info-card p{
-    color:#647f9d;
-    line-height:1.6;
+    color:#667f9c;
+    line-height:1.7;
+    font-size:14px;
+    font-weight:500;
 }
 
 .after-payment{
-    margin-top:24px;
-    background:var(--navy-dark);
+    margin-top:22px;
+    background:
+        radial-gradient(
+            circle at 85% 10%,
+            rgba(23,107,255,.18),
+            transparent 30%
+        ),
+        var(--navy);
     color:#fff;
     border-radius:25px;
-    padding:30px;
+    padding:28px 30px;
     display:flex;
     align-items:center;
     justify-content:space-between;
     gap:25px;
+    box-shadow:0 20px 50px rgba(7,29,61,.13);
 }
 
 .after-payment h3{
-    font-size:22px;
-    margin-bottom:8px;
+    font-size:20px;
+    letter-spacing:-.5px;
+    margin-bottom:7px;
+    font-weight:800;
 }
 
 .after-payment p{
-    color:#b8cbe0;
-    line-height:1.5;
+    color:#b9cce0;
+    line-height:1.6;
+    font-size:13px;
 }
 
 .support-button{
     flex-shrink:0;
     text-decoration:none;
-    background:var(--blue);
+    background:linear-gradient(135deg,#176bff,#3d83ff);
     color:#fff;
-    padding:14px 22px;
-    border-radius:13px;
+    padding:13px 21px;
+    border-radius:12px;
+    font-size:13px;
     font-weight:800;
+    box-shadow:0 10px 25px rgba(23,107,255,.2);
+    transition:.25s ease;
+}
+
+.support-button:hover{
+    transform:translateY(-2px);
 }
 
 footer{
     text-align:center;
     padding:30px;
     color:#8092a8;
-    font-size:12px;
+    font-size:11px;
     border-top:1px solid var(--border);
-    background:#fff;
+    background:rgba(255,255,255,.8);
 }
 
 .footer-logo{
-    font-size:20px;
-    font-weight:900;
+    font-size:19px;
+    font-weight:800;
+    letter-spacing:-.5px;
     color:var(--navy);
     margin-bottom:7px;
 }
@@ -454,14 +604,15 @@ footer{
 .toast{
     position:fixed;
     left:50%;
-    bottom:30px;
+    bottom:28px;
     transform:translateX(-50%) translateY(20px);
-    background:var(--navy-dark);
+    background:var(--navy);
     color:#fff;
-    padding:12px 20px;
-    border-radius:12px;
-    font-size:14px;
+    padding:11px 18px;
+    border-radius:11px;
+    font-size:13px;
     font-weight:700;
+    box-shadow:0 12px 30px rgba(7,29,61,.18);
     opacity:0;
     pointer-events:none;
     transition:.25s;
@@ -476,31 +627,35 @@ footer{
 @media(max-width:850px){
 
     main{
-        padding:50px 18px 70px;
+        padding:55px 18px 70px;
     }
 
     .header-inner{
-        padding:17px 18px;
+        padding:16px 18px;
     }
 
     .header-button{
         padding:10px 13px;
-        font-size:12px;
+        font-size:11px;
     }
 
     .logo-text{
-        font-size:24px;
+        font-size:23px;
     }
 
     .hero{
         grid-template-columns:1fr;
         gap:30px;
-        margin-bottom:55px;
+        margin-bottom:60px;
     }
 
     .hero h1{
-        font-size:48px;
-        letter-spacing:-2px;
+        font-size:49px;
+        letter-spacing:-2.5px;
+    }
+
+    .hero-description{
+        font-size:15px;
     }
 
     .payment-layout{
@@ -524,17 +679,47 @@ footer{
 
 @media(max-width:500px){
 
+    .header-inner{
+        padding:14px;
+    }
+
+    .logo-symbol{
+        width:39px;
+        height:39px;
+    }
+
+    .logo-text{
+        font-size:21px;
+    }
+
+    .logo-subtitle{
+        font-size:7px;
+    }
+
     .hero h1{
-        font-size:40px;
+        font-size:39px;
+        letter-spacing:-2px;
     }
 
     .hero-card{
-        min-height:280px;
+        min-height:290px;
         border-radius:25px;
+        padding:25px;
+    }
+
+    .hero-card-logo{
+        top:25px;
+        left:25px;
+        width:70px;
+        height:70px;
     }
 
     .card{
-        padding:22px;
+        padding:21px;
+    }
+
+    .payment-heading h2{
+        font-size:29px;
     }
 
     .amount-box{
@@ -554,210 +739,212 @@ footer{
 
 <header>
 
-    <div class="header-inner">
+<div class="header-inner">
 
-        <div class="logo">
+<div class="logo">
 
-            <div class="logo-symbol">
-                <img
-                    src="assets/valora-logo.png"
-                    alt="VALORA"
-                >
-            </div>
+<div class="logo-symbol">
+<img
+src="assets/valora-logo.png"
+alt="VALORA"
+>
+</div>
 
-            <div>
+<div>
 
-                <div class="logo-text">
-                    VALOR<span>A</span>
-                </div>
+<div class="logo-text">
+VALOR<span>A</span>
+</div>
 
-                <div class="logo-subtitle">
-                    Tu aliado financiero.
-                </div>
+<div class="logo-subtitle">
+Tu aliado financiero.
+</div>
 
-            </div>
+</div>
 
-        </div>
+</div>
 
-        <a
-            id="topSupport"
-            class="header-button"
-            href="#"
-            target="_blank"
-        >
-            Contactar
-        </a>
+<a
+id="topSupport"
+class="header-button"
+href="#"
+target="_blank"
+>
+Contactar
+</a>
 
-    </div>
+</div>
 
 </header>
 
 
 <main>
 
-    <section class="hero">
+<section class="hero">
 
-        <div>
+<div>
 
-            <div
-                id="eyebrowText"
-                class="hero-label"
-            ></div>
+<div
+id="eyebrowText"
+class="hero-label"
+></div>
 
-            <h1 id="pageTitle"></h1>
+<h1 id="pageTitle"></h1>
 
-            <p
-                id="pageDescription"
-                class="hero-description"
-            ></p>
+<p
+id="pageDescription"
+class="hero-description"
+></p>
 
-            <div class="hero-actions">
+<div class="hero-actions">
 
-                <a
-                    id="heroSupport"
-                    class="primary-button"
-                    href="#"
-                    target="_blank"
-                ></a>
+<a
+id="heroSupport"
+class="primary-button"
+href="#"
+target="_blank"
+></a>
 
-                <a
-                    class="secondary-button"
-                    href="#payment"
-                >
-                    Ver datos de pago ↓
-                </a>
+<a
+class="secondary-button"
+href="#payment"
+>
+Ver datos de pago ↓
+</a>
 
-            </div>
+</div>
 
-        </div>
-
-
-        <div class="hero-card">
-
-            <div class="hero-card-logo">
-
-                <img
-                    src="assets/valora-logo.png"
-                    alt="VALORA"
-                >
-
-            </div>
-
-            <h2 id="heroCardTitle"></h2>
-
-            <p id="heroCardText"></p>
-
-        </div>
-
-    </section>
+</div>
 
 
-    <section id="payment">
+<div class="hero-card">
 
-        <div class="payment-heading">
+<div class="hero-card-logo">
 
-            <h2 id="paymentTitle"></h2>
+<img
+src="assets/valora-logo.png"
+alt="VALORA"
+>
 
-            <p id="paymentSubtitle"></p>
+</div>
 
-        </div>
+<h2 id="heroCardTitle"></h2>
 
+<p id="heroCardText"></p>
 
-        <div class="payment-layout">
+</div>
 
-
-            <div class="card">
-
-                <h3
-                    id="bankSectionTitle"
-                    class="card-title"
-                ></h3>
-
-                <div id="details" class="details"></div>
-
-                <div class="amount-box">
-
-                    <div>
-
-                        <div
-                            id="amountLabel"
-                            class="amount-label"
-                        ></div>
-
-                        <div
-                            id="amountValue"
-                            class="amount-value"
-                        ></div>
-
-                    </div>
-
-                </div>
-
-            </div>
+</section>
 
 
-            <div class="card info-card">
+<section id="payment">
 
-                <div class="info-icon">
-                    ✓
-                </div>
+<div class="payment-heading">
 
-                <h3>
-                    Revisa tus datos
-                </h3>
+<h2 id="paymentTitle"></h2>
 
-                <p>
-                    Verifica cuidadosamente el banco,
-                    titular, número de cuenta, Cédula,
-                    referencia e importe antes de
-                    confirmar la operación.
-                </p>
+<p id="paymentSubtitle"></p>
 
-            </div>
-
-        </div>
+</div>
 
 
-        <div class="after-payment">
+<div class="payment-layout">
 
-            <div>
+<div class="card">
 
-                <h3 id="afterPaymentTitle"></h3>
+<h3
+id="bankSectionTitle"
+class="card-title"
+></h3>
 
-                <p id="afterPaymentText"></p>
+<div
+id="details"
+class="details"
+></div>
 
-            </div>
+<div class="amount-box">
 
-            <a
-                id="afterPaymentButton"
-                class="support-button"
-                href="#"
-                target="_blank"
-            ></a>
+<div>
 
-        </div>
+<div
+id="amountLabel"
+class="amount-label"
+></div>
 
-    </section>
+<div
+id="amountValue"
+class="amount-value"
+></div>
+
+</div>
+
+</div>
+
+</div>
+
+
+<div class="card info-card">
+
+<div class="info-icon">
+✓
+</div>
+
+<h3>
+Revisa tus datos
+</h3>
+
+<p>
+Verifica cuidadosamente el banco,
+titular, número de cuenta, Cédula,
+referencia e importe antes de
+confirmar la operación.
+</p>
+
+</div>
+
+</div>
+
+
+<div class="after-payment">
+
+<div>
+
+<h3 id="afterPaymentTitle"></h3>
+
+<p id="afterPaymentText"></p>
+
+</div>
+
+<a
+id="afterPaymentButton"
+class="support-button"
+href="#"
+target="_blank"
+></a>
+
+</div>
+
+</section>
 
 </main>
 
 
 <footer>
 
-    <div class="footer-logo">
-        VALOR<span>A</span>
-    </div>
+<div class="footer-logo">
+VALOR<span>A</span>
+</div>
 
-    <div id="footerText"></div>
+<div id="footerText"></div>
 
 </footer>
 
 
 <div
-    id="toast"
-    class="toast"
+id="toast"
+class="toast"
 >
-    Copiado
+Copiado
 </div>
 
 
@@ -901,35 +1088,35 @@ function render(C){
     $('details').innerHTML = rows.map(
         ([label,value]) => `
 
-            <div class="detail">
+        <div class="detail">
 
-                <span class="detail-label">
-                    ${esc(label)}
+            <span class="detail-label">
+                ${esc(label)}
+            </span>
+
+            <div class="detail-value">
+
+                <span>
+                    ${esc(value || '—')}
                 </span>
 
-                <div class="detail-value">
-
-                    <span>
-                        ${esc(value || '—')}
-                    </span>
-
-                    ${
-                        value
-                        ?
-                        `<button
-                            class="copy-btn"
-                            type="button"
-                            onclick='copyText(${JSON.stringify(String(value))})'
-                        >
-                            Copiar
-                        </button>`
-                        :
-                        ''
-                    }
-
-                </div>
+                ${
+                    value
+                    ?
+                    `<button
+                        class="copy-btn"
+                        type="button"
+                        onclick='copyText(${JSON.stringify(String(value))})'
+                    >
+                        Copiar
+                    </button>`
+                    :
+                    ''
+                }
 
             </div>
+
+        </div>
 
         `
     ).join('');
