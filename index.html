@@ -7,10 +7,19 @@
 
 <title>VALORA — Datos de pago</title>
 
+<meta
+    name="description"
+    content="Información de pago VALORA"
+/>
+
 <!-- QR GENERATOR -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
 
 <style>
+
+/* =========================================================
+   RESET
+========================================================= */
 
 * {
     margin: 0;
@@ -18,19 +27,39 @@
     box-sizing: border-box;
 }
 
-:root {
-    --navy: #071d3d;
-    --navy-2: #0b2d5b;
-    --blue: #1e6bff;
-    --blue-light: #3c8cff;
-    --green: #00c896;
-    --green-light: #35e0aa;
-    --white: #ffffff;
-    --soft: #eaf4ff;
-    --text: #142b45;
-    --muted: #718096;
-    --border: #dfe9f4;
+html {
+    scroll-behavior: smooth;
 }
+
+:root {
+
+    --blue: #1769ff;
+    --blue-2: #3b82f6;
+    --blue-soft: #edf4ff;
+
+    --green: #00b889;
+    --green-soft: #e9fbf5;
+
+    --dark: #10243d;
+    --text: #182b42;
+    --muted: #718096;
+
+    --white: #ffffff;
+    --bg: #f7faff;
+
+    --border: #e5edf7;
+
+    --shadow:
+        0 25px 70px rgba(22, 55, 90, .10);
+
+    --shadow-small:
+        0 12px 35px rgba(22, 55, 90, .08);
+}
+
+
+/* =========================================================
+   BODY
+========================================================= */
 
 body {
 
@@ -39,56 +68,189 @@ body {
         Helvetica,
         sans-serif;
 
+    min-height: 100vh;
+
+    color: var(--text);
+
     background:
 
         radial-gradient(
-            circle at 85% 10%,
-            rgba(30,107,255,0.28),
-            transparent 28%
+            circle at 8% 10%,
+            rgba(23,105,255,.08),
+            transparent 25%
         ),
 
         radial-gradient(
-            circle at 10% 70%,
-            rgba(0,200,150,0.10),
+            circle at 92% 30%,
+            rgba(0,184,137,.07),
             transparent 25%
         ),
 
         linear-gradient(
-            135deg,
-            #061a35,
-            #092b56 55%,
-            #071d3d
+            180deg,
+            #ffffff 0%,
+            #f7faff 100%
         );
 
-    min-height: 100vh;
-
-    color: var(--text);
+    overflow-x: hidden;
 }
 
 
-/* =====================================
+/* =========================================================
+   ANIMATED BACKGROUND
+========================================================= */
+
+.background-shape {
+
+    position: fixed;
+
+    border-radius: 50%;
+
+    pointer-events: none;
+
+    z-index: -1;
+
+    filter: blur(1px);
+
+    opacity: .7;
+}
+
+.shape-one {
+
+    width: 260px;
+    height: 260px;
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(23,105,255,.10),
+            transparent 70%
+        );
+
+    top: 120px;
+    left: -100px;
+
+    animation:
+        floatOne 9s ease-in-out infinite;
+}
+
+.shape-two {
+
+    width: 300px;
+    height: 300px;
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(0,184,137,.09),
+            transparent 70%
+        );
+
+    top: 500px;
+    right: -120px;
+
+    animation:
+        floatTwo 11s ease-in-out infinite;
+}
+
+.shape-three {
+
+    width: 180px;
+    height: 180px;
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(23,105,255,.07),
+            transparent 70%
+        );
+
+    bottom: 100px;
+    left: 25%;
+
+    animation:
+        floatThree 8s ease-in-out infinite;
+}
+
+
+@keyframes floatOne {
+
+    0%,100% {
+        transform:
+            translate3d(0,0,0);
+    }
+
+    50% {
+        transform:
+            translate3d(30px,40px,0);
+    }
+}
+
+
+@keyframes floatTwo {
+
+    0%,100% {
+        transform:
+            translate3d(0,0,0);
+    }
+
+    50% {
+        transform:
+            translate3d(-35px,-30px,0);
+    }
+}
+
+
+@keyframes floatThree {
+
+    0%,100% {
+        transform:
+            translate3d(0,0,0);
+    }
+
+    50% {
+        transform:
+            translate3d(25px,-25px,0);
+    }
+}
+
+
+/* =========================================================
    HEADER
-===================================== */
+========================================================= */
 
 header {
 
+    position: sticky;
+
+    top: 0;
+
+    z-index: 100;
+
     width: 100%;
 
-    padding: 22px 25px;
+    background:
+        rgba(255,255,255,.86);
 
     border-bottom:
-        1px solid rgba(255,255,255,0.08);
-
-    background:
-        rgba(4,20,43,0.78);
+        1px solid rgba(225,234,244,.8);
 
     backdrop-filter:
-        blur(16px);
+        blur(18px);
+
+    -webkit-backdrop-filter:
+        blur(18px);
 }
+
 
 .header-inner {
 
-    max-width: 1180px;
+    width: min(
+        1180px,
+        calc(100% - 40px)
+    );
+
+    min-height: 76px;
 
     margin: auto;
 
@@ -100,7 +262,9 @@ header {
 }
 
 
-/* LOGO */
+/* =========================================================
+   LOGO
+========================================================= */
 
 .logo {
 
@@ -108,29 +272,30 @@ header {
 
     align-items: center;
 
-    gap: 12px;
+    gap: 11px;
 
-    color: white;
+    color: var(--dark);
 
-    font-size: 28px;
+    font-size: 27px;
 
-    font-weight: 800;
+    font-weight: 900;
 
     letter-spacing: 1.5px;
 }
 
+
 .logo-symbol {
 
-    width: 42px;
-    height: 42px;
+    width: 41px;
+    height: 41px;
 
-    border-radius: 11px;
+    border-radius: 12px;
 
     background:
         linear-gradient(
             135deg,
-            #1167ff,
-            #0e4dcc
+            #1769ff,
+            #0e50cf
         );
 
     display: flex;
@@ -139,11 +304,14 @@ header {
 
     justify-content: center;
 
+    box-shadow:
+        0 9px 25px rgba(23,105,255,.22);
+
     position: relative;
 
-    box-shadow:
-        0 10px 30px rgba(30,107,255,.3);
+    overflow: hidden;
 }
+
 
 .logo-symbol::before {
 
@@ -151,22 +319,66 @@ header {
 
     color: white;
 
-    font-size: 28px;
+    font-size: 27px;
 
     font-weight: 900;
 
     transform:
         skew(-8deg);
+
+    position: relative;
+
+    z-index: 2;
 }
+
+
+.logo-symbol::after {
+
+    content: "";
+
+    position: absolute;
+
+    width: 70px;
+    height: 70px;
+
+    background:
+        rgba(255,255,255,.12);
+
+    transform:
+        rotate(35deg);
+
+    top: -45px;
+    left: -20px;
+
+    animation:
+        logoShine 4s ease-in-out infinite;
+}
+
+
+@keyframes logoShine {
+
+    0%,55% {
+        transform:
+            translateX(-40px)
+            rotate(35deg);
+    }
+
+    75%,100% {
+        transform:
+            translateX(70px)
+            rotate(35deg);
+    }
+}
+
 
 .logo-text span {
-
-    color:
-        var(--green);
+    color: var(--green);
 }
 
 
-/* SECURITY */
+/* =========================================================
+   SECURITY
+========================================================= */
 
 .security {
 
@@ -176,20 +388,23 @@ header {
 
     gap: 9px;
 
-    color: #b9cbe0;
+    color: #66788d;
 
-    font-size: 13px;
+    font-size: 12px;
+
+    font-weight: 700;
 }
+
 
 .security-icon {
 
-    width: 32px;
-    height: 32px;
+    width: 30px;
+    height: 30px;
 
     border-radius: 50%;
 
     background:
-        rgba(0,200,150,.12);
+        var(--green-soft);
 
     color:
         var(--green);
@@ -200,86 +415,138 @@ header {
 
     justify-content: center;
 
-    font-weight: 800;
+    font-weight: 900;
+
+    border:
+        1px solid rgba(0,184,137,.15);
 }
 
 
-/* =====================================
+/* =========================================================
    MAIN
-===================================== */
+========================================================= */
 
 main {
 
-    max-width: 1180px;
+    width: min(
+        1180px,
+        calc(100% - 40px)
+    );
 
     margin: auto;
 
-    padding: 70px 20px 90px;
+    padding:
+        75px 0 90px;
 }
 
 
-/* HERO */
+/* =========================================================
+   HERO
+========================================================= */
 
 .hero {
 
     text-align: center;
 
-    max-width: 720px;
+    max-width: 760px;
 
     margin:
-        0 auto 50px;
+        0 auto 52px;
 }
+
 
 .hero-label {
 
-    display: inline-block;
+    display: inline-flex;
+
+    align-items: center;
+
+    gap: 8px;
 
     padding:
-        8px 16px;
+        8px 15px;
 
-    border-radius: 30px;
+    border-radius: 50px;
 
     background:
-        rgba(30,107,255,.12);
+        var(--blue-soft);
 
     border:
-        1px solid rgba(30,107,255,.25);
+        1px solid #dce9ff;
 
     color:
-        #72a8ff;
+        var(--blue);
 
-    font-size: 11px;
+    font-size: 10px;
 
-    font-weight: 800;
+    font-weight: 900;
 
-    letter-spacing: 1.5px;
+    letter-spacing: 1.4px;
 
     text-transform: uppercase;
 
     margin-bottom: 20px;
+
+    animation:
+        labelFloat 3s ease-in-out infinite;
 }
+
+
+.hero-label::before {
+
+    content: "";
+
+    width: 6px;
+    height: 6px;
+
+    border-radius: 50%;
+
+    background:
+        var(--green);
+
+    box-shadow:
+        0 0 0 5px rgba(0,184,137,.08);
+}
+
+
+@keyframes labelFloat {
+
+    0%,100% {
+        transform:
+            translateY(0);
+    }
+
+    50% {
+        transform:
+            translateY(-3px);
+    }
+}
+
 
 .hero h1 {
 
-    color: white;
+    color: var(--dark);
 
     font-size:
-        clamp(38px,5vw,58px);
+        clamp(39px, 6vw, 62px);
 
-    line-height: 1.05;
+    line-height: 1.02;
 
-    letter-spacing: -2px;
+    letter-spacing: -2.8px;
 
-    margin-bottom: 20px;
+    margin-bottom: 21px;
+
+    font-weight: 900;
 }
+
 
 .hero h1 span {
 
     background:
         linear-gradient(
             90deg,
-            #1e6bff,
-            #00c896
+            var(--blue),
+            var(--green)
         );
 
     -webkit-background-clip: text;
@@ -289,55 +556,93 @@ main {
     color: transparent;
 }
 
+
 .hero p {
 
-    color: #a9bdd3;
+    color:
+        #718096;
 
     font-size: 16px;
 
-    line-height: 1.7;
+    line-height: 1.75;
+
+    max-width: 610px;
+
+    margin: auto;
 }
 
 
-/* =====================================
+/* =========================================================
    PAYMENT CARD
-===================================== */
+========================================================= */
 
 .payment-card {
 
-    background: #ffffff;
+    position: relative;
 
-    border-radius: 24px;
+    background:
+        rgba(255,255,255,.94);
+
+    border:
+        1px solid var(--border);
+
+    border-radius: 28px;
 
     overflow: hidden;
 
     box-shadow:
-        0 35px 90px rgba(0,0,0,.25);
+        0 35px 90px rgba(22,55,90,.12);
 
-    border:
-        1px solid rgba(255,255,255,.12);
+    animation:
+        cardAppear .8s ease both;
 }
 
 
-/* CARD TOP */
+@keyframes cardAppear {
+
+    from {
+
+        opacity: 0;
+
+        transform:
+            translateY(20px);
+
+    }
+
+    to {
+
+        opacity: 1;
+
+        transform:
+            translateY(0);
+
+    }
+}
+
+
+/* =========================================================
+   CARD TOP
+========================================================= */
 
 .payment-top {
 
-    background:
-        linear-gradient(
-            135deg,
-            #0b2d5b,
-            #124d9a
-        );
+    position: relative;
 
-    padding: 32px;
+    padding:
+        32px 36px;
 
     color: white;
 
-    position: relative;
-
     overflow: hidden;
+
+    background:
+        linear-gradient(
+            120deg,
+            #0c3975,
+            #1769c9
+        );
 }
+
 
 .payment-top::before {
 
@@ -345,403 +650,24 @@ main {
 
     position: absolute;
 
-    width: 400px;
-    height: 400px;
+    width: 430px;
+    height: 430px;
 
     border-radius: 50%;
 
     border:
-        1px solid rgba(255,255,255,.08);
+        1px solid rgba(255,255,255,.11);
 
-    right: -160px;
+    right: -170px;
 
-    top: -250px;
+    top: -280px;
+
+    animation:
+        slowRotate 18s linear infinite;
 }
+
 
 .payment-top::after {
-
-    content: "";
-
-    position: absolute;
-
-    width: 250px;
-    height: 250px;
-
-    border-radius: 50%;
-
-    border:
-        1px solid rgba(0,200,150,.15);
-
-    left: -150px;
-
-    bottom: -200px;
-}
-
-.payment-top-content {
-
-    position: relative;
-
-    z-index: 2;
-}
-
-.payment-top small {
-
-    color: #8fb5df;
-
-    font-size: 11px;
-
-    text-transform: uppercase;
-
-    letter-spacing: 1.5px;
-}
-
-.payment-top h2 {
-
-    font-size: 27px;
-
-    margin-top: 8px;
-}
-
-
-/* CONTENT */
-
-.payment-content {
-
-    padding: 35px;
-}
-
-
-/* =====================================
-   BANK
-===================================== */
-
-.bank-profile {
-
-    display: flex;
-
-    align-items: center;
-
-    gap: 20px;
-
-    padding-bottom: 30px;
-
-    margin-bottom: 30px;
-
-    border-bottom:
-        1px solid var(--border);
-}
-
-.bank-photo {
-
-    width: 100px;
-    height: 100px;
-
-    border-radius: 18px;
-
-    background: #f5f9fd;
-
-    border:
-        1px solid var(--border);
-
-    display: flex;
-
-    align-items: center;
-
-    justify-content: center;
-
-    overflow: hidden;
-
-    flex-shrink: 0;
-}
-
-.bank-photo img {
-
-    width: 100%;
-    height: 100%;
-
-    object-fit: contain;
-
-    padding: 12px;
-}
-
-.bank-info small {
-
-    color: var(--muted);
-
-    font-size: 11px;
-
-    text-transform: uppercase;
-
-    letter-spacing: 1px;
-}
-
-.bank-info h3 {
-
-    font-size: 24px;
-
-    margin-top: 5px;
-
-    color: var(--text);
-}
-
-.bank-info p {
-
-    color: var(--muted);
-
-    font-size: 14px;
-
-    margin-top: 5px;
-}
-
-
-/* =====================================
-   DETAILS
-===================================== */
-
-.details {
-
-    display: grid;
-
-    grid-template-columns:
-        1fr 1fr;
-
-    gap: 15px;
-}
-
-.detail {
-
-    padding: 18px;
-
-    background:
-        #f7faff;
-
-    border:
-        1px solid var(--border);
-
-    border-radius: 13px;
-}
-
-.detail.full {
-
-    grid-column:
-        1 / -1;
-}
-
-.detail-label {
-
-    display: block;
-
-    color: #7c8c9e;
-
-    font-size: 10px;
-
-    font-weight: 800;
-
-    text-transform: uppercase;
-
-    letter-spacing: .8px;
-
-    margin-bottom: 8px;
-}
-
-.detail-row {
-
-    display: flex;
-
-    align-items: center;
-
-    justify-content: space-between;
-
-    gap: 10px;
-}
-
-.detail-value {
-
-    color: var(--text);
-
-    font-size: 15px;
-
-    font-weight: 700;
-
-    word-break: break-word;
-}
-
-
-/* COPY */
-
-.copy-button {
-
-    border: none;
-
-    background:
-        #eaf4ff;
-
-    color:
-        var(--blue);
-
-    padding:
-        8px 12px;
-
-    border-radius: 7px;
-
-    cursor: pointer;
-
-    font-size: 11px;
-
-    font-weight: 800;
-
-    transition: .2s;
-
-    flex-shrink: 0;
-}
-
-.copy-button:hover {
-
-    background:
-        var(--blue);
-
-    color:
-        white;
-}
-
-
-/* =====================================
-   AMOUNT
-===================================== */
-
-.amount-box {
-
-    margin-top: 22px;
-
-    padding: 26px;
-
-    border-radius: 16px;
-
-    background:
-        linear-gradient(
-            135deg,
-            #eef9f7,
-            #f5fbff
-        );
-
-    border:
-        1px solid #d7ece8;
-
-    display: flex;
-
-    align-items: center;
-
-    justify-content: space-between;
-
-    gap: 20px;
-}
-
-.amount-label {
-
-    color:
-        var(--muted);
-
-    font-size: 11px;
-
-    text-transform: uppercase;
-
-    letter-spacing: .8px;
-
-    margin-bottom: 5px;
-}
-
-.amount {
-
-    color:
-        var(--green);
-
-    font-size: 39px;
-
-    font-weight: 900;
-}
-
-.amount-note {
-
-    color:
-        var(--muted);
-
-    font-size: 12px;
-
-    max-width: 230px;
-
-    text-align: right;
-}
-
-
-/* =====================================
-   WARNING
-===================================== */
-
-.warning {
-
-    margin-top: 22px;
-
-    padding: 20px;
-
-    border-radius: 13px;
-
-    background:
-        #fff9ed;
-
-    border:
-        1px solid #f0dfb9;
-}
-
-.warning-title {
-
-    color:
-        #856c36;
-
-    font-size: 13px;
-
-    font-weight: 800;
-
-    margin-bottom: 7px;
-}
-
-.warning p {
-
-    color:
-        #75694f;
-
-    font-size: 12px;
-
-    line-height: 1.6;
-}
-
-
-/* =====================================
-   QR PAYMENT
-===================================== */
-
-.qr-section {
-
-    margin-top: 25px;
-
-    background:
-        #ffffff;
-
-    border-radius: 24px;
-
-    padding: 35px;
-
-    border:
-        1px solid var(--border);
-
-    box-shadow:
-        0 25px 60px rgba(0,0,0,.08);
-
-    position: relative;
-
-    overflow: hidden;
-}
-
-.qr-section::before {
 
     content: "";
 
@@ -752,17 +678,636 @@ main {
 
     border-radius: 50%;
 
+    border:
+        1px solid rgba(255,255,255,.08);
+
+    left: -170px;
+
+    bottom: -250px;
+}
+
+
+@keyframes slowRotate {
+
+    from {
+        transform:
+            rotate(0deg);
+    }
+
+    to {
+        transform:
+            rotate(360deg);
+    }
+}
+
+
+.payment-top-content {
+
+    position: relative;
+
+    z-index: 2;
+}
+
+
+.payment-top small {
+
+    color:
+        rgba(255,255,255,.67);
+
+    font-size: 10px;
+
+    text-transform: uppercase;
+
+    letter-spacing: 1.6px;
+
+    font-weight: 800;
+}
+
+
+.payment-top h2 {
+
+    font-size: 27px;
+
+    margin-top: 7px;
+
+    letter-spacing: -.5px;
+}
+
+
+/* =========================================================
+   PAYMENT CONTENT
+========================================================= */
+
+.payment-content {
+
+    padding: 38px;
+}
+
+
+/* =========================================================
+   BANK PROFILE
+========================================================= */
+
+.bank-profile {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 20px;
+
+    padding-bottom: 31px;
+
+    margin-bottom: 31px;
+
+    border-bottom:
+        1px solid var(--border);
+}
+
+
+.bank-photo {
+
+    width: 96px;
+    height: 96px;
+
+    border-radius: 21px;
+
+    background:
+        #f7faff;
+
+    border:
+        1px solid var(--border);
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    overflow: hidden;
+
+    flex-shrink: 0;
+
+    box-shadow:
+        0 10px 30px rgba(20,55,90,.06);
+
+    transition:
+        .3s ease;
+}
+
+
+.bank-photo:hover {
+
+    transform:
+        translateY(-4px)
+        rotate(-1deg);
+
+    box-shadow:
+        0 18px 35px rgba(20,55,90,.11);
+}
+
+
+.bank-photo img {
+
+    width: 100%;
+    height: 100%;
+
+    object-fit: contain;
+
+    padding: 11px;
+}
+
+
+.bank-info small {
+
+    color:
+        var(--muted);
+
+    font-size: 10px;
+
+    text-transform: uppercase;
+
+    letter-spacing: 1px;
+
+    font-weight: 800;
+}
+
+
+.bank-info h3 {
+
+    font-size: 24px;
+
+    margin-top: 5px;
+
+    color:
+        var(--text);
+
+    letter-spacing: -.5px;
+}
+
+
+.bank-info p {
+
+    color:
+        var(--muted);
+
+    font-size: 13px;
+
+    margin-top: 5px;
+}
+
+
+/* =========================================================
+   DETAILS GRID
+========================================================= */
+
+.details {
+
+    display: grid;
+
+    grid-template-columns:
+        1fr 1fr;
+
+    gap: 14px;
+}
+
+
+.detail {
+
+    position: relative;
+
+    padding: 19px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #fbfdff,
+            #f5f9fe
+        );
+
+    border:
+        1px solid var(--border);
+
+    border-radius: 15px;
+
+    transition:
+        transform .25s ease,
+        box-shadow .25s ease,
+        border-color .25s ease;
+
+    overflow: hidden;
+}
+
+
+.detail::before {
+
+    content: "";
+
+    position: absolute;
+
+    width: 80px;
+    height: 80px;
+
+    border-radius: 50%;
+
+    background:
+        rgba(23,105,255,.035);
+
+    right: -35px;
+    bottom: -45px;
+}
+
+
+.detail:hover {
+
+    transform:
+        translateY(-3px);
+
+    box-shadow:
+        0 12px 30px rgba(20,55,90,.07);
+
+    border-color:
+        #cbdcf0;
+}
+
+
+.detail.full {
+
+    grid-column:
+        1 / -1;
+}
+
+
+.detail-label {
+
+    display: block;
+
+    color:
+        #8191a3;
+
+    font-size: 9px;
+
+    font-weight: 900;
+
+    text-transform: uppercase;
+
+    letter-spacing: .9px;
+
+    margin-bottom: 9px;
+}
+
+
+.detail-row {
+
+    position: relative;
+
+    z-index: 2;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    gap: 10px;
+}
+
+
+.detail-value {
+
+    color:
+        var(--text);
+
+    font-size: 15px;
+
+    font-weight: 800;
+
+    word-break: break-word;
+
+    line-height: 1.4;
+}
+
+
+/* =========================================================
+   COPY BUTTON
+========================================================= */
+
+.copy-button {
+
+    border: none;
+
+    background:
+        #e9f2ff;
+
+    color:
+        var(--blue);
+
+    padding:
+        8px 12px;
+
+    border-radius: 8px;
+
+    cursor: pointer;
+
+    font-size: 10px;
+
+    font-weight: 900;
+
+    transition:
+        .2s ease;
+
+    flex-shrink: 0;
+}
+
+
+.copy-button:hover {
+
+    background:
+        var(--blue);
+
+    color:
+        white;
+
+    transform:
+        translateY(-1px);
+
+    box-shadow:
+        0 6px 15px rgba(23,105,255,.18);
+}
+
+
+.copy-button:active {
+
+    transform:
+        scale(.95);
+}
+
+
+/* =========================================================
+   AMOUNT
+========================================================= */
+
+.amount-box {
+
+    margin-top: 22px;
+
+    padding: 27px;
+
+    border-radius: 17px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #ecfbf7,
+            #f4f9ff
+        );
+
+    border:
+        1px solid #d9eee8;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    gap: 20px;
+
+    position: relative;
+
+    overflow: hidden;
+}
+
+
+.amount-box::after {
+
+    content: "";
+
+    position: absolute;
+
+    width: 160px;
+    height: 160px;
+
+    border-radius: 50%;
+
+    background:
+        rgba(0,184,137,.05);
+
+    right: -60px;
+
+    top: -80px;
+
+    animation:
+        amountFloat 5s ease-in-out infinite;
+}
+
+
+@keyframes amountFloat {
+
+    0%,100% {
+        transform:
+            translate(0,0);
+    }
+
+    50% {
+        transform:
+            translate(-10px,12px);
+    }
+}
+
+
+.amount-label {
+
+    position: relative;
+
+    z-index: 2;
+
+    color:
+        var(--muted);
+
+    font-size: 10px;
+
+    text-transform: uppercase;
+
+    letter-spacing: .9px;
+
+    margin-bottom: 4px;
+
+    font-weight: 800;
+}
+
+
+.amount {
+
+    position: relative;
+
+    z-index: 2;
+
+    color:
+        var(--green);
+
+    font-size: 39px;
+
+    font-weight: 900;
+
+    letter-spacing: -1.5px;
+}
+
+
+.amount-note {
+
+    position: relative;
+
+    z-index: 2;
+
+    color:
+        var(--muted);
+
+    font-size: 11px;
+
+    line-height: 1.5;
+
+    max-width: 240px;
+
+    text-align: right;
+}
+
+
+/* =========================================================
+   WARNING
+========================================================= */
+
+.warning {
+
+    margin-top: 22px;
+
+    padding: 20px;
+
+    border-radius: 14px;
+
+    background:
+        #fffaf0;
+
+    border:
+        1px solid #f1e2bd;
+}
+
+
+.warning-title {
+
+    color:
+        #7d6737;
+
+    font-size: 12px;
+
+    font-weight: 900;
+
+    margin-bottom: 7px;
+}
+
+
+.warning p {
+
+    color:
+        #75694f;
+
+    font-size: 11px;
+
+    line-height: 1.65;
+}
+
+
+/* =========================================================
+   QR SECTION
+========================================================= */
+
+.qr-section {
+
+    margin-top: 25px;
+
+    position: relative;
+
+    background:
+        rgba(255,255,255,.97);
+
+    border:
+        1px solid var(--border);
+
+    border-radius: 26px;
+
+    padding: 36px;
+
+    box-shadow:
+        0 25px 65px rgba(22,55,90,.08);
+
+    overflow: hidden;
+}
+
+
+.qr-section::before {
+
+    content: "";
+
+    position: absolute;
+
+    width: 360px;
+    height: 360px;
+
+    border-radius: 50%;
+
     background:
         radial-gradient(
             circle,
-            rgba(30,107,255,.08),
+            rgba(23,105,255,.075),
+            transparent 68%
+        );
+
+    right: -140px;
+
+    top: -190px;
+
+    animation:
+        qrGlow 7s ease-in-out infinite;
+}
+
+
+.qr-section::after {
+
+    content: "";
+
+    position: absolute;
+
+    width: 180px;
+    height: 180px;
+
+    border-radius: 50%;
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(0,184,137,.06),
             transparent 70%
         );
 
-    right: -100px;
+    left: -90px;
 
-    top: -150px;
+    bottom: -90px;
 }
+
+
+@keyframes qrGlow {
+
+    0%,100% {
+        transform:
+            scale(1);
+    }
+
+    50% {
+        transform:
+            scale(1.12);
+    }
+}
+
 
 .qr-wrapper {
 
@@ -779,10 +1324,12 @@ main {
     gap: 50px;
 }
 
+
 .qr-information {
 
-    max-width: 560px;
+    max-width: 600px;
 }
+
 
 .qr-label {
 
@@ -792,16 +1339,16 @@ main {
         var(--blue);
 
     background:
-        #eaf4ff;
+        var(--blue-soft);
 
     padding:
         7px 13px;
 
     border-radius: 30px;
 
-    font-size: 10px;
+    font-size: 9px;
 
-    font-weight: 800;
+    font-weight: 900;
 
     text-transform: uppercase;
 
@@ -809,6 +1356,7 @@ main {
 
     margin-bottom: 15px;
 }
+
 
 .qr-information h2 {
 
@@ -818,7 +1366,10 @@ main {
         var(--text);
 
     margin-bottom: 12px;
+
+    letter-spacing: -.7px;
 }
+
 
 .qr-information p {
 
@@ -828,11 +1379,18 @@ main {
     font-size: 14px;
 
     line-height: 1.7;
+
+    max-width: 550px;
 }
+
+
+/* =========================================================
+   QR STEPS
+========================================================= */
 
 .qr-steps {
 
-    margin-top: 20px;
+    margin-top: 21px;
 
     display: flex;
 
@@ -840,6 +1398,7 @@ main {
 
     gap: 10px;
 }
+
 
 .qr-step {
 
@@ -850,20 +1409,23 @@ main {
     gap: 10px;
 
     color:
-        #526679;
+        #536679;
 
-    font-size: 13px;
+    font-size: 12px;
+
+    font-weight: 600;
 }
+
 
 .qr-step-number {
 
-    width: 25px;
-    height: 25px;
+    width: 26px;
+    height: 26px;
 
     border-radius: 50%;
 
     background:
-        #eaf4ff;
+        var(--blue-soft);
 
     color:
         var(--blue);
@@ -874,15 +1436,17 @@ main {
 
     justify-content: center;
 
-    font-size: 11px;
+    font-size: 10px;
 
-    font-weight: 800;
+    font-weight: 900;
 
     flex-shrink: 0;
 }
 
 
-/* QR BOX */
+/* =========================================================
+   QR BOX
+========================================================= */
 
 .qr-box {
 
@@ -890,7 +1454,7 @@ main {
 
     padding: 18px;
 
-    border-radius: 18px;
+    border-radius: 20px;
 
     background:
         white;
@@ -899,12 +1463,28 @@ main {
         1px solid var(--border);
 
     box-shadow:
-        0 15px 40px rgba(8,35,65,.10);
+        0 20px 45px rgba(8,35,65,.10);
 
     text-align: center;
 
     flex-shrink: 0;
+
+    transition:
+        transform .35s ease,
+        box-shadow .35s ease;
 }
+
+
+.qr-box:hover {
+
+    transform:
+        translateY(-6px)
+        rotate(1deg);
+
+    box-shadow:
+        0 27px 55px rgba(8,35,65,.14);
+}
+
 
 #qrcode {
 
@@ -919,12 +1499,14 @@ main {
 
     justify-content: center;
 
-    background: white;
+    background:
+        white;
 
     border-radius: 8px;
 
     overflow: hidden;
 }
+
 
 #qrcode img,
 #qrcode canvas {
@@ -932,9 +1514,9 @@ main {
     display: block !important;
 
     width: 190px !important;
-
     height: 190px !important;
 }
+
 
 .qr-caption {
 
@@ -943,30 +1525,30 @@ main {
     color:
         var(--muted);
 
-    font-size: 11px;
+    font-size: 10px;
 
-    font-weight: 700;
+    font-weight: 800;
 }
 
 
-/* =====================================
+/* =========================================================
    TELEGRAM
-===================================== */
+========================================================= */
 
 .telegram {
 
     margin-top: 25px;
 
     padding:
-        28px 32px;
+        27px 31px;
 
-    border-radius: 20px;
+    border-radius: 21px;
 
     background:
         linear-gradient(
-            135deg,
-            #0b2d5b,
-            #0e4384
+            120deg,
+            #0c3975,
+            #1769c9
         );
 
     display: flex;
@@ -978,10 +1560,56 @@ main {
     gap: 25px;
 
     box-shadow:
-        0 25px 60px rgba(0,0,0,.18);
+        0 25px 60px rgba(20,55,90,.16);
+
+    position: relative;
+
+    overflow: hidden;
 }
 
+
+.telegram::before {
+
+    content: "";
+
+    position: absolute;
+
+    width: 220px;
+    height: 220px;
+
+    border-radius: 50%;
+
+    border:
+        1px solid rgba(255,255,255,.09);
+
+    right: -80px;
+
+    top: -130px;
+
+    animation:
+        telegramCircle 8s linear infinite;
+}
+
+
+@keyframes telegramCircle {
+
+    from {
+        transform:
+            rotate(0deg);
+    }
+
+    to {
+        transform:
+            rotate(360deg);
+    }
+}
+
+
 .telegram-left {
+
+    position: relative;
+
+    z-index: 2;
 
     display: flex;
 
@@ -990,15 +1618,16 @@ main {
     gap: 17px;
 }
 
+
 .telegram-icon {
 
-    width: 53px;
-    height: 53px;
+    width: 52px;
+    height: 52px;
 
     border-radius: 15px;
 
     background:
-        rgba(30,107,255,.28);
+        rgba(255,255,255,.13);
 
     display: flex;
 
@@ -1008,10 +1637,14 @@ main {
 
     color: white;
 
-    font-size: 23px;
+    font-size: 21px;
 
     font-weight: 900;
+
+    border:
+        1px solid rgba(255,255,255,.08);
 }
+
 
 .telegram-text h3 {
 
@@ -1022,14 +1655,21 @@ main {
     margin-bottom: 4px;
 }
 
+
 .telegram-text p {
 
-    color: #a9c2dc;
+    color:
+        #b7cee8;
 
-    font-size: 12px;
+    font-size: 11px;
 }
 
+
 .telegram-button {
+
+    position: relative;
+
+    z-index: 2;
 
     display: inline-flex;
 
@@ -1042,72 +1682,78 @@ main {
     padding:
         14px 24px;
 
-    border-radius: 9px;
+    border-radius: 10px;
 
     background:
-        var(--blue);
+        white;
 
-    color: white;
+    color:
+        #145fd4;
 
-    font-size: 13px;
+    font-size: 12px;
 
-    font-weight: 800;
+    font-weight: 900;
 
     text-decoration: none;
 
-    transition: .25s;
+    transition:
+        .25s ease;
 
     white-space: nowrap;
+
+    box-shadow:
+        0 8px 20px rgba(0,0,0,.08);
 }
+
 
 .telegram-button:hover {
 
-    background:
-        #0d5be0;
-
     transform:
-        translateY(-2px);
+        translateY(-3px);
 
     box-shadow:
-        0 12px 30px rgba(30,107,255,.3);
+        0 15px 30px rgba(0,0,0,.14);
 }
 
 
-/* =====================================
+/* =========================================================
    FOOTER
-===================================== */
+========================================================= */
 
 footer {
 
     padding:
-        30px 20px;
+        34px 20px;
 
     text-align: center;
 
     background:
-        #04162d;
+        #f0f5fa;
 
     border-top:
-        1px solid rgba(255,255,255,.06);
+        1px solid var(--border);
 
     color:
-        #7890a8;
+        #8191a3;
 
-    font-size: 11px;
+    font-size: 10px;
 }
+
 
 .footer-logo {
 
-    color: white;
+    color:
+        var(--dark);
 
     font-size: 21px;
 
-    font-weight: 800;
+    font-weight: 900;
 
     letter-spacing: 1.5px;
 
     margin-bottom: 7px;
 }
+
 
 .footer-logo span {
 
@@ -1116,71 +1762,149 @@ footer {
 }
 
 
-/* =====================================
+/* =========================================================
    MOBILE
-===================================== */
+========================================================= */
 
 @media(max-width:700px) {
 
-    header {
+    .header-inner {
 
-        padding:
-            17px 18px;
+        width:
+            calc(100% - 30px);
+
+        min-height:
+            67px;
     }
 
+
     .logo {
+
+        font-size: 22px;
+
+        gap: 8px;
+    }
+
+
+    .logo-symbol {
+
+        width: 35px;
+        height: 35px;
+
+        border-radius: 10px;
+    }
+
+
+    .logo-symbol::before {
 
         font-size: 23px;
     }
 
-    .logo-symbol {
-
-        width: 36px;
-        height: 36px;
-    }
 
     .security {
 
-        font-size: 10px;
+        font-size: 9px;
     }
+
+
+    .security-icon {
+
+        width: 27px;
+        height: 27px;
+    }
+
 
     main {
 
+        width:
+            calc(100% - 24px);
+
         padding:
-            50px 15px 65px;
+            50px 0 65px;
     }
+
+
+    .hero {
+
+        margin-bottom:
+            38px;
+    }
+
 
     .hero h1 {
 
-        font-size: 37px;
+        font-size:
+            38px;
+
+        letter-spacing:
+            -1.8px;
     }
+
+
+    .hero p {
+
+        font-size:
+            14px;
+    }
+
 
     .payment-top {
 
-        padding: 25px;
+        padding:
+            25px;
     }
+
+
+    .payment-top h2 {
+
+        font-size:
+            23px;
+    }
+
 
     .payment-content {
 
-        padding: 22px;
+        padding:
+            22px;
     }
+
 
     .bank-profile {
 
         align-items:
             flex-start;
+
+        gap:
+            14px;
     }
+
 
     .bank-photo {
 
-        width: 75px;
-        height: 75px;
+        width:
+            72px;
+
+        height:
+            72px;
+
+        border-radius:
+            15px;
     }
+
 
     .bank-info h3 {
 
-        font-size: 19px;
+        font-size:
+            19px;
     }
+
+
+    .bank-info p {
+
+        font-size:
+            11px;
+    }
+
 
     .details {
 
@@ -1188,11 +1912,20 @@ footer {
             1fr;
     }
 
+
     .detail.full {
 
         grid-column:
             auto;
     }
+
+
+    .detail-value {
+
+        font-size:
+            13px;
+    }
+
 
     .amount-box {
 
@@ -1201,19 +1934,35 @@ footer {
 
         align-items:
             flex-start;
+
+        padding:
+            23px;
     }
+
+
+    .amount {
+
+        font-size:
+            34px;
+    }
+
 
     .amount-note {
 
         text-align:
             left;
+
+        max-width:
+            none;
     }
+
 
     .qr-section {
 
         padding:
             25px 20px;
     }
+
 
     .qr-wrapper {
 
@@ -1222,7 +1971,11 @@ footer {
 
         text-align:
             center;
+
+        gap:
+            30px;
     }
+
 
     .qr-information {
 
@@ -1230,17 +1983,34 @@ footer {
             none;
     }
 
+
+    .qr-information h2 {
+
+        font-size:
+            25px;
+    }
+
+
+    .qr-information p {
+
+        font-size:
+            13px;
+    }
+
+
     .qr-steps {
 
         text-align:
             left;
     }
 
+
     .qr-box {
 
         width:
             230px;
     }
+
 
     .telegram {
 
@@ -1251,13 +2021,63 @@ footer {
             stretch;
 
         padding:
-            25px;
+            24px;
     }
+
 
     .telegram-button {
 
         width:
             100%;
+    }
+}
+
+
+/* =========================================================
+   SMALL MOBILE
+========================================================= */
+
+@media(max-width:390px) {
+
+    .security {
+
+        display:
+            none;
+    }
+
+
+    .hero h1 {
+
+        font-size:
+            34px;
+    }
+
+
+    .payment-content {
+
+        padding:
+            18px;
+    }
+
+
+    .detail {
+
+        padding:
+            16px;
+    }
+
+
+    .detail-row {
+
+        align-items:
+            flex-start;
+    }
+
+
+    .copy-button {
+
+        padding:
+            7px 9px;
     }
 }
 
@@ -1269,74 +2089,100 @@ footer {
 <body>
 
 
-<!-- =====================================
+<!-- ANIMATED BACKGROUND -->
+
+<div class="background-shape shape-one"></div>
+<div class="background-shape shape-two"></div>
+<div class="background-shape shape-three"></div>
+
+
+
+<!-- =====================================================
      HEADER
-===================================== -->
+===================================================== -->
 
 <header>
 
-<div class="header-inner">
+    <div class="header-inner">
 
-    <div class="logo">
+        <div class="logo">
 
-        <div class="logo-symbol"></div>
+            <div class="logo-symbol"></div>
 
-        <div class="logo-text">
-            VALOR<span>A</span>
+            <div class="logo-text">
+                VALOR<span>A</span>
+            </div>
+
+        </div>
+
+
+        <div class="security">
+
+            <div class="security-icon">
+                ✓
+            </div>
+
+            Información de pago
+
         </div>
 
     </div>
-
-
-    <div class="security">
-
-        <div class="security-icon">
-            ✓
-        </div>
-
-        Información de pago
-
-    </div>
-
-</div>
 
 </header>
 
 
 
+<!-- =====================================================
+     MAIN
+===================================================== -->
+
 <main>
 
 
-<!-- =====================================
+<!-- =====================================================
      HERO
-===================================== -->
+===================================================== -->
 
 <section class="hero">
 
-    <div class="hero-label" id="eyebrowText">
+    <div
+        class="hero-label"
+        id="eyebrowText"
+    >
         VALORA · Pago seguro
     </div>
 
+
     <h1 id="pageTitle">
+
         Datos para realizar
-        <span>el pago</span>
+
+        <span>
+            el pago
+        </span>
+
     </h1>
 
+
     <p id="pageDescription">
+
         Revisa cuidadosamente la información de pago
         antes de realizar la transferencia.
+
     </p>
 
 </section>
 
 
 
-<!-- =====================================
-     PAYMENT
-===================================== -->
+<!-- =====================================================
+     PAYMENT CARD
+===================================================== -->
 
 <section class="payment-card">
 
+
+    <!-- CARD HEADER -->
 
     <div class="payment-top">
 
@@ -1356,12 +2202,15 @@ footer {
 
 
 
+    <!-- CARD CONTENT -->
+
     <div class="payment-content">
 
 
-        <!-- BANK -->
+        <!-- BANK PROFILE -->
 
         <div class="bank-profile">
+
 
             <div class="bank-photo">
 
@@ -1379,9 +2228,11 @@ footer {
                     Entidad bancaria
                 </small>
 
+
                 <h3 id="bankName">
                     Nombre del banco
                 </h3>
+
 
                 <p>
                     Información de la cuenta para transferencia
@@ -1393,16 +2244,21 @@ footer {
 
 
 
-        <!-- DETAILS -->
+        <!-- =================================================
+             DETAILS
+        ================================================= -->
 
         <div class="details">
 
+
+            <!-- BENEFICIARY -->
 
             <div class="detail full">
 
                 <span class="detail-label">
                     Beneficiario
                 </span>
+
 
                 <div class="detail-row">
 
@@ -1412,6 +2268,7 @@ footer {
                     >
                         Nombre del beneficiario
                     </strong>
+
 
                     <button
                         class="copy-button"
@@ -1426,11 +2283,14 @@ footer {
 
 
 
+            <!-- BANK -->
+
             <div class="detail">
 
                 <span class="detail-label">
                     Banco
                 </span>
+
 
                 <div class="detail-row">
 
@@ -1440,6 +2300,7 @@ footer {
                     >
                         Nombre del banco
                     </strong>
+
 
                     <button
                         class="copy-button"
@@ -1454,11 +2315,14 @@ footer {
 
 
 
+            <!-- ACCOUNT -->
+
             <div class="detail">
 
                 <span class="detail-label">
                     Número de cuenta
                 </span>
+
 
                 <div class="detail-row">
 
@@ -1468,6 +2332,7 @@ footer {
                     >
                         000000000000
                     </strong>
+
 
                     <button
                         class="copy-button"
@@ -1482,11 +2347,14 @@ footer {
 
 
 
+            <!-- CEDULA -->
+
             <div class="detail">
 
                 <span class="detail-label">
                     Cédula
                 </span>
+
 
                 <div class="detail-row">
 
@@ -1494,533 +2362,9 @@ footer {
                         class="detail-value"
                         id="accountType"
                     >
-                        Cuenta corriente
+                        0000000000
                     </strong>
 
-                    <button
-                        class="copy-button"
-                        onclick="copyValue('accountType',this)"
-                    >
-                        Copiar
-                    </button>
-
-                </div>
-
-            </div>
-
-
-
-            <div class="detail">
-
-                <span class="detail-label">
-                    Referencia
-                </span>
-
-                <div class="detail-row">
-
-                    <strong
-                        class="detail-value"
-                        id="reference"
-                    >
-                        VALORA-0000
-                    </strong>
 
                     <button
-                        class="copy-button"
-                        onclick="copyValue('reference',this)"
-                    >
-                        Copiar
-                    </button>
-
-                </div>
-
-            </div>
-
-
-        </div>
-
-
-
-        <!-- AMOUNT -->
-
-        <div class="amount-box">
-
-            <div>
-
-                <div class="amount-label">
-                    Importe a pagar
-                </div>
-
-                <div
-                    class="amount"
-                    id="amount"
-                >
-                    000,000
-                </div>
-
-            </div>
-
-
-            <div class="amount-note">
-                Verifica el importe y los datos
-                antes de confirmar la operación.
-            </div>
-
-        </div>
-
-
-
-        <!-- WARNING -->
-
-        <div class="warning">
-
-            <div class="warning-title">
-                ⚠ Verifica cuidadosamente los datos
-            </div>
-
-            <p>
-                Antes de realizar la transferencia,
-                comprueba el nombre del beneficiario,
-                banco, número de cuenta, importe y referencia.
-            </p>
-
-        </div>
-
-
-    </div>
-
-</section>
-
-
-
-<!-- =====================================
-     QR PAYMENT
-===================================== -->
-
-<section
-    class="qr-section"
-    id="qrSection"
->
-
-    <div class="qr-wrapper">
-
-
-        <div class="qr-information">
-
-            <div class="qr-label">
-                Pago mediante QR
-            </div>
-
-            <h2>
-                Escanea el código QR
-            </h2>
-
-            <p>
-                Utiliza la cámara de tu teléfono para
-                escanear el código y acceder a la
-                información de pago.
-            </p>
-
-
-            <div class="qr-steps">
-
-                <div class="qr-step">
-
-                    <div class="qr-step-number">
-                        1
-                    </div>
-
-                    Abre la cámara de tu teléfono
-
-                </div>
-
-
-                <div class="qr-step">
-
-                    <div class="qr-step-number">
-                        2
-                    </div>
-
-                    Escanea el código QR
-
-                </div>
-
-
-                <div class="qr-step">
-
-                    <div class="qr-step-number">
-                        3
-                    </div>
-
-                    Verifica los datos antes de pagar
-
-                </div>
-
-            </div>
-
-        </div>
-
-
-
-        <div class="qr-box">
-
-            <!-- QR IS GENERATED HERE -->
-
-            <div id="qrcode"></div>
-
-            <div class="qr-caption">
-                Código QR de pago
-            </div>
-
-        </div>
-
-
-    </div>
-
-</section>
-
-
-
-<!-- =====================================
-     TELEGRAM
-===================================== -->
-
-<section class="telegram">
-
-
-    <div class="telegram-left">
-
-        <div class="telegram-icon">
-            ➤
-        </div>
-
-
-        <div class="telegram-text">
-
-            <h3>
-                ¿Necesitas ayuda?
-            </h3>
-
-            <p>
-                Nuestro equipo está disponible para ayudarte.
-            </p>
-
-        </div>
-
-    </div>
-
-
-
-    <a
-        href="https://t.me/TU_TELEGRAM"
-        target="_blank"
-        class="telegram-button"
-    >
-
-        ➤
-
-        Contactar por Telegram
-
-    </a>
-
-
-</section>
-
-
-</main>
-
-
-
-<!-- =====================================
-     FOOTER
-===================================== -->
-
-<footer>
-
-    <div class="footer-logo">
-        VALOR<span>A</span>
-    </div>
-
-    Tu aliado financiero.
-
-    <br><br>
-
-    © 2026 VALORA. Todos los derechos reservados.
-
-</footer>
-
-
-
-<!-- =====================================
-     CONFIG
-===================================== -->
-
-<script src="config.js"></script>
-
-
-<script>
-
-
-/* =====================================
-   COPY
-===================================== */
-
-function copyValue(id, button) {
-
-    const element =
-        document.getElementById(id);
-
-    const text =
-        element.innerText.trim();
-
-    navigator.clipboard.writeText(text);
-
-
-    const oldText =
-        button.innerText;
-
-    button.innerText =
-        "Copiado ✓";
-
-
-    setTimeout(function() {
-
-        button.innerText =
-            oldText;
-
-    },1500);
-}
-
-
-
-/* =====================================
-   TEXT
-===================================== */
-
-function setText(id, value) {
-
-    const el =
-        document.getElementById(id);
-
-    if (el) {
-
-        el.textContent =
-            value ?? '';
-
-    }
-}
-
-
-/* =====================================
-   LINKS
-===================================== */
-
-function setLink(selector, value) {
-
-    const el =
-        document.querySelector(selector);
-
-    if (el && value) {
-
-        el.href =
-            value;
-
-    }
-}
-
-
-
-/* =====================================
-   QR GENERATOR
-===================================== */
-
-function generateQR(data) {
-
-    const qrContainer =
-        document.getElementById("qrcode");
-
-    if (!qrContainer) {
-        return;
-    }
-
-
-    qrContainer.innerHTML = "";
-
-
-    if (!data) {
-
-        document.getElementById("qrSection").style.display =
-            "none";
-
-        return;
-    }
-
-
-    document.getElementById("qrSection").style.display =
-        "";
-
-
-    new QRCode(
-
-        qrContainer,
-
-        {
-
-            text: String(data),
-
-            width: 190,
-
-            height: 190,
-
-            colorDark: "#071d3d",
-
-            colorLight: "#ffffff",
-
-            correctLevel:
-                QRCode.CorrectLevel.H
-
-        }
-
-    );
-
-}
-
-
-
-/* =====================================
-   RENDER CONFIG
-===================================== */
-
-function renderConfig(C) {
-
-
-    if (C.pageTitle) {
-
-        document.title =
-            `VALORA — ${C.pageTitle}`;
-
-    }
-
-
-    setText(
-        'eyebrowText',
-        C.eyebrow
-    );
-
-
-    setText(
-        'pageTitle',
-        C.pageTitle
-    );
-
-
-    setText(
-        'pageDescription',
-        C.pageDescription
-    );
-
-
-    setText(
-        'bankSectionTitle',
-        C.bankSectionTitle
-    );
-
-
-    setText(
-        'paymentTitle',
-        C.paymentTitle
-    );
-
-
-    setText(
-        'bankName',
-        C.bank
-    );
-
-
-    setText(
-        'beneficiary',
-        C.accountHolder
-    );
-
-
-    setText(
-        'bank',
-        C.bank
-    );
-
-
-    setText(
-        'account',
-        C.accountNumber
-    );
-
-
-    setText(
-        'accountType',
-        C.cedula
-    );
-
-
-    setText(
-        'reference',
-        C.reference
-    );
-
-
-    setText(
-        'amount',
-        C.amount
-            ? `${C.amount} ${C.currency || ''}`
-            : ''
-    );
-
-
-    /*
-       QR
-
-       Теперь используется qrData,
-       а не qrImage.
-    */
-
-    generateQR(
-        C.qrData
-    );
-
-
-    setLink(
-        '.telegram-button',
-        C.telegram
-    );
-
-}
-
-
-
-/* =====================================
-   LOAD
-===================================== */
-
-if (typeof loadConfig === 'function') {
-
-    loadConfig()
-
-        .then(renderConfig)
-
-        .catch(
-
-            error =>
-                console.error(
-                    'Error al cargar la configuración:',
-                    error
-                )
-
-        );
-
-}
-
-</script>
-
-
-</body>
-</html>
+                        class="
